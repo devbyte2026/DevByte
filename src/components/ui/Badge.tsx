@@ -13,7 +13,7 @@ export function Badge({ className, variant = "default", ...props }: BadgeProps) 
           "bg-primary text-text-inverted": variant === "default",
           "border border-current text-text-muted bg-transparent":
             variant === "outline",
-          "bg-accent/10 text-accent-dark": variant === "accent",
+          "bg-accent/10 text-accent": variant === "accent",
         },
         className
       )}

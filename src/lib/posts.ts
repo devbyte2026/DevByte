@@ -73,15 +73,21 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 
   try {
-    const response = await fetch(
-      `${supabaseUrl}/rest/v1/posts?slug=eq.${slug}&select=*`,
-      {
-        headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
-        },
-      }
-    );
+    const isNumeric = /^\d+$/.test(slug);
+    let query: string;
+
+    if (isNumeric) {
+      query = `${supabaseUrl}/rest/v1/posts?id=eq.${slug}&select=*`;
+    } else {
+      query = `${supabaseUrl}/rest/v1/posts?slug=eq.${slug}&select=*`;
+    }
+
+    const response = await fetch(query, {
+      headers: {
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+      },
+    });
 
     if (!response.ok) throw new Error("Failed to fetch");
 

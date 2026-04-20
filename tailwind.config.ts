@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,24 +11,29 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1A1A2E",
-          dark: "#0D0D1F",
-          light: "#2E2E4E",
+          DEFAULT: "var(--color-primary)",
+          dark: "var(--color-primary-dark)",
+          light: "var(--color-primary-light)",
         },
         accent: {
-          DEFAULT: "#00B4D8",
-          dark: "#0096B4",
-          light: "#48CAE4",
+          DEFAULT: "var(--color-accent)",
+          dark: "var(--color-accent-dark)",
+          light: "var(--color-accent-light)",
         },
         surface: {
-          DEFAULT: "#FFFFFF",
-          muted: "#F8FAFC",
-          dark: "#1E293B",
+          DEFAULT: "var(--color-surface)",
+          muted: "var(--color-surface-muted)",
+          dark: "var(--color-surface-dark)",
         },
         text: {
-          primary: "#1F2937",
-          muted: "#6B7280",
-          inverted: "#FFFFFF",
+          primary: "var(--color-text-primary)",
+          muted: "var(--color-text-muted)",
+          inverted: "var(--color-text-inverted)",
+        },
+        border: "var(--color-border)",
+        card: {
+          DEFAULT: "var(--color-card)",
+          foreground: "var(--color-card-foreground)",
         },
       },
       fontFamily: {

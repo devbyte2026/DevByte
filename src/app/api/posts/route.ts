@@ -69,14 +69,26 @@ export async function POST(request: NextRequest) {
         content: data.content,
         category: data.category,
         tags: data.tags,
-        image: data.image,
+        image: data.image || null,
         author: data.author,
         draft: data.draft ?? false,
         date: new Date().toISOString(),
+        slug: data.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .substring(0, 50) + "-" + Date.now(),
       }),
     });
 
-    if (!response.ok) throw new Error("Failed to create post");
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Supabase POST error:", response.status, errorText);
+      return NextResponse.json(
+        { error: "Failed to create post", details: errorText },
+        { status: response.status }
+      );
+    }
 
     const created = await response.json();
     return NextResponse.json({ post: created[0] }, { status: 201 });

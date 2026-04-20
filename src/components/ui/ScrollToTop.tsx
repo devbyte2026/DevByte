@@ -29,7 +29,7 @@ export function ScrollToTop() {
       aria-label="Volver arriba"
       className={cn(
         "fixed bottom-6 right-6 z-50 p-4 rounded-full bg-accent text-white shadow-lg",
-        "hover:bg-accent-dark transition-all duration-200 hover:scale-110",
+        "hover:bg-accent transition-all duration-200 hover:scale-110",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2",
         "animate-pulse-slow"
       )}
