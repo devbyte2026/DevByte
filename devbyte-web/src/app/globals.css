@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #1a1a2e;
+  --color-primary-dark: #0d0d1f;
+  --color-primary-light: #2e2e4e;
+  --color-accent: #00b4d8;
+  --color-accent-dark: #0096b4;
+  --color-accent-light: #48cae4;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-surface-dark: #1e293b;
+  --color-text-primary: #1f2937;
+  --color-text-muted: #6b7280;
+  --color-text-inverted: #ffffff;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent: var(--color-accent);
+  --color-accent-dark: var(--color-accent-dark);
+  --color-accent-light: var(--color-accent-light);
+  --color-surface: var(--color-surface);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-dark: var(--color-surface-dark);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-inverted: var(--color-text-inverted);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-poppins);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans), "Inter", sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
