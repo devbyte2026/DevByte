@@ -100,11 +100,12 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <SchemaOrg schema={organizationSchema()} />
         <SchemaOrg schema={websiteSchema()} />
+
       </head>
-      <body className="min-h-screen flex flex-col antialiased bg-surface text-text-primary font-sans">
+      <body className="min-h-screen flex flex-col antialiased bg-[var(--color-surface)] text-[var(--color-text-primary)] font-sans transition-colors duration-200">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-[var(--color-accent)] focus:text-white focus:px-4 focus:py-2 focus:rounded"
         >
           Saltar al contenido principal
         </a>

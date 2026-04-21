@@ -10,6 +10,8 @@ export function ExitIntentPopup() {
   const [hasSeen, setHasSeen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined" || window.location.pathname.startsWith("/admin")) return;
+
     const hasConverted = localStorage.getItem("devbyte_converted");
     if (hasConverted || hasSeen) return;
 

@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 export interface SectionWrapperProps
   extends React.HTMLAttributes<HTMLElement> {
   id?: string;
-  background?: "default" | "muted" | "dark" | "gradient";
+  background?: "default" | "muted" | "gradient";
   children: ReactNode;
 }
 
@@ -24,8 +24,7 @@ export function SectionWrapper({
         {
           "bg-surface": background === "default",
           "bg-surface-muted": background === "muted",
-          "bg-primary text-text-inverted": background === "dark",
-          "bg-gradient-to-br from-primary to-primary-dark text-text-inverted":
+          "bg-gradient-to-br from-primary to-primary-light text-text-inverted":
             background === "gradient",
         },
         className

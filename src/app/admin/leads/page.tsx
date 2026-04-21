@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Download, Filter, MessageCircle, LogOut } from "lucide-react";
+import { Download, Filter, MessageCircle, LogOut, LayoutDashboard } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -148,6 +148,12 @@ export default function LeadsPage() {
             <p className="text-sm text-text-muted">Gestión de Leads</p>
           </div>
           <div className="flex items-center gap-4">
+            <Link href="/admin">
+              <Button variant="ghost" size="sm">
+                <LayoutDashboard size={16} className="mr-2" />
+                Dashboard
+              </Button>
+            </Link>
             {newCount > 0 && (
               <Badge variant="accent">{newCount} nuevos</Badge>
             )}

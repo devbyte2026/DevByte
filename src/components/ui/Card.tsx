@@ -17,11 +17,11 @@ export function Card({
       className={cn(
         "rounded-xl p-6 transition-all duration-200",
         {
-          "bg-surface border border-gray-100 shadow-sm hover:shadow-md":
+          "bg-[var(--color-card)] border border-[var(--color-border)] shadow-sm hover:shadow-md":
             variant === "default",
-          "bg-primary text-text-inverted shadow-lg scale-[1.02]":
+          "bg-[var(--color-primary)] text-[var(--color-text-inverted)] shadow-lg scale-[1.02]":
             variant === "featured",
-          "bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm":
+          "bg-white/80 backdrop-blur-sm border border-[var(--color-border)] shadow-sm":
             variant === "glass",
         },
         className
@@ -40,7 +40,7 @@ export function CardTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={cn("text-xl font-semibold font-display", className)}
+      className={cn("text-xl font-semibold font-display text-[var(--color-text-primary)]", className)}
       {...props}
     >
       {children}
@@ -54,7 +54,7 @@ export function CardDescription({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn("text-text-muted mt-2", className)} {...props}>
+    <p className={cn("text-[var(--color-text-muted)] mt-2", className)} {...props}>
       {children}
     </p>
   );

@@ -62,6 +62,7 @@ export default function AdminBlogPage() {
   const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -126,65 +127,62 @@ export default function AdminBlogPage() {
 
   const handleSave = async () => {
     setLoading(true);
+    setErrorMessage("");
+
+    const tags = formData.tags ? formData.tags.split(",").map((t: string) => t.trim()).filter(Boolean) : [];
+
     const postData = {
       title: formData.title,
       description: formData.description,
       content: formData.content,
       category: formData.category,
-      tags: formData.tags.split(",").map((t) => t.trim()).filter(Boolean),
+      tags: tags,
       image: formData.image,
       author: formData.author,
       draft: formData.draft,
     };
 
+    console.log("[handleSave] Sending data:", JSON.stringify(postData, null, 2));
+
     try {
+      let response: Response;
       if (editingPost) {
-        const response = await fetch(`/api/posts/${editingPost.id}`, {
+        response = await fetch(`/api/posts/${editingPost.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(postData),
         });
-        if (response.ok) {
-          const data = await response.json();
-          setPosts(posts.map((p) => p.id === editingPost.id ? { ...p, ...postData, id: editingPost.id } : p));
-        }
       } else {
-        const response = await fetch("/api/posts", {
+        response = await fetch("/api/posts", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(postData),
         });
-        if (response.ok) {
-          const data = await response.json();
-          if (data.post) {
-            setPosts([data.post, ...posts]);
-          } else {
-            const newPost = {
-              id: Date.now(),
-              ...postData,
-              date: new Date().toISOString(),
-            };
-            setPosts([newPost, ...posts]);
-          }
+      }
+
+      console.log("[handleSave] Response status:", response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("[handleSave] Response data:", data);
+        if (editingPost) {
+          setPosts(posts.map((p) => p.id === editingPost.id ? { ...p, ...postData, id: editingPost.id } : p));
+        } else {
+          setPosts(data.post ? [data.post, ...posts] : [{ ...postData, id: Date.now(), date: new Date().toISOString() }, ...posts]);
         }
-      }
-      setIsCreating(false);
-      setEditingPost(null);
-    } catch (error) {
-      const newPost = {
-        id: Date.now(),
-        ...postData,
-        date: new Date().toISOString(),
-      };
-      if (editingPost) {
-        setPosts(posts.map((p) => p.id === editingPost.id ? newPost : p));
+        setIsCreating(false);
+        setEditingPost(null);
       } else {
-        setPosts([newPost, ...posts]);
+        const errorData = await response.json();
+        console.log("[handleSave] Error data:", errorData);
+        setErrorMessage(errorData.details || errorData.error || "Error al guardar");
       }
-      setIsCreating(false);
-      setEditingPost(null);
+    } catch (err) {
+      console.error("[handleSave] Catch error:", err);
+      setErrorMessage("Error de conexión");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleDelete = async (id: number) => {
@@ -300,6 +298,12 @@ export default function AdminBlogPage() {
                 <span className="text-sm">Guardar como borrador</span>
               </label>
             </div>
+
+            {errorMessage && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                {errorMessage}
+              </div>
+            )}
 
             <div className="flex gap-4 pt-4">
               <Button onClick={handleSave} disabled={loading}>

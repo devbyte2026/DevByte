@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <>
       <SchemaOrg schema={websiteSchemaData} />
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-primary via-primary-light to-primary dark:text-text-inverted">
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-primary via-primary-light to-primary">
         <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-5" />
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-20 relative z-10">
           <div className="max-w-3xl">
@@ -26,7 +26,7 @@ export function Hero() {
               digitales a medida. Más de 10 proyectos entregados en la región.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              <Button asChild size="lg" className="bg-accent hover:bg-accent-dark">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
                 <Link
                   href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=Hola%2C%20vi%20la%20web%20de%20DevByte%20y%20me%20interesa%20un%20presupuesto%20para...`}
                   target="_blank"
