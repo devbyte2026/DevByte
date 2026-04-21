@@ -75,7 +75,7 @@ export const services: Service[] = [
       "Las PWAs funcionan como apps nativas en celulares sin necesidad de descarga. Notificaciones push, offline y acceso rápido.",
     keywords: ["app PWA Resistencia", "aplicación progresiva Chaco", "PWA NEA"],
     benefits: [
-      "Sin instalación requise",
+      "Sin instalación requerida",
       "Notificaciones push",
       "Funciona offline",
     ],
