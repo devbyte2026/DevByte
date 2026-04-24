@@ -11,7 +11,7 @@ export function organizationSchema() {
     logo: `${SITE_URL}/og-default.jpg`,
     image: `${SITE_URL}/og-default.jpg`,
     telephone: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER,
-    email: "hola@devbyte.com.ar",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "devbyte2026@gmail.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Resistencia",
