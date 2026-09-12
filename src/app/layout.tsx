@@ -6,7 +6,7 @@ import { WebVitals } from "@/components/WebVitals";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { FAQChatWidget } from "@/components/ui/FAQChatWidget";
 import { ExitIntentPopup } from "@/components/ui/ExitIntentPopup";
 import { SchemaOrg, organizationSchema, websiteSchema } from "@/lib/schema";
 
@@ -80,8 +80,13 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
   },
 };
 
@@ -100,11 +105,22 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
         <SchemaOrg schema={organizationSchema()} />
         <SchemaOrg schema={websiteSchema()} />
-
       </head>
       <body className="min-h-screen flex flex-col antialiased bg-[var(--color-surface)] text-[var(--color-text-primary)] font-sans transition-colors duration-200">
         <a
@@ -121,7 +137,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ScrollToTop />
-        <WhatsAppButton />
+        <FAQChatWidget />
         <ExitIntentPopup />
       </body>
     </html>
