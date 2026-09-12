@@ -6,7 +6,6 @@ import { WebVitals } from "@/components/WebVitals";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { FAQChatWidget } from "@/components/ui/FAQChatWidget";
 import { ExitIntentPopup } from "@/components/ui/ExitIntentPopup";
 import { SchemaOrg, organizationSchema, websiteSchema } from "@/lib/schema";
@@ -138,7 +137,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <ScrollToTop />
-        <WhatsAppButton />
         <FAQChatWidget />
         <ExitIntentPopup />
       </body>
